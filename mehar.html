@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        var secureHash = "e2c347db1f855d081f9b3b89fa72b78b"; // '201304' ka encrypted form
+        var inputPassword = prompt("Direct entry checked! Enter Secret Password to access this page:");
+        if (inputPassword !== null) {
+            var inputHash = CryptoJS.MD5(inputPassword).toString();
+            if (inputHash !== secureHash) {
+                alert("Wrong Password! Redirecting to home... ❌");
+                window.location.href = "index.html";
+            }
+        } else {
+            window.location.href = "index.html";
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mehar's World ✨</title>
+    <title>Mehar's World 🌸</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +27,7 @@
         }
         body {
             background: #2c3e50;
-            background: linear-gradient(to right, #fd746c, #2c3e50);
+            background: linear-gradient(to left, #fd746c, #2c3e50);
             color: #fff;
             padding: 20px;
             display: flex;
@@ -30,7 +44,7 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .profile-img {
             width: 130px;
@@ -44,13 +58,11 @@
             font-size: 2.5rem;
             margin-bottom: 5px;
             color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
         .tagline {
             font-size: 1.1rem;
             color: #ff758c;
             margin-bottom: 25px;
-            font-weight: 500;
         }
         .about-box {
             text-align: left;
@@ -59,10 +71,9 @@
             border-radius: 15px;
             margin-bottom: 20px;
             line-height: 1.6;
-            border-left: 4px solid #ff758c;
         }
         .about-box h3 {
-            color: #ff758c;
+            color: #fd746c;
             margin-bottom: 10px;
             font-size: 1.3rem;
         }
@@ -77,17 +88,17 @@
             display: inline-block;
             margin-top: 15px;
             padding: 12px 25px;
-            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            background: linear-gradient(45deg, #fd746c, #ff758c);
             color: #fff;
             text-decoration: none;
             border-radius: 25px;
             font-weight: bold;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
+            box-shadow: 0 4px 15px rgba(253, 116, 108, 0.4);
         }
         .back-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 117, 140, 0.6);
+            box-shadow: 0 6px 20px rgba(253, 116, 108, 0.6);
         }
     </style>
 </head>
@@ -96,20 +107,20 @@
     <div class="container">
         <img src="https://via.placeholder.com/150" alt="Mehar" class="profile-img">
         
-        <h1>Mehar 🌸</h1>
-        <p class="tagline">Bringing smiles and sunshine everywhere ☀️</p>
+        <h1>Mehar ✨</h1>
+        <p class="tagline">An elegant soul with a beautiful heart 🌸</p>
 
         <div class="about-box">
-            <h3>Hello! Welcome 💫</h3>
-            <p>Welcome to my sweet little corner on the internet. Main apni zindagi ko khushi, pyaar aur dher saari positivity ke sath jeena pasand karti hoon. Choti-choti khushiyon me maza dhoondhna aur hamesha haste rehna hi meri pehchan hai! ✨</p>
+            <h3>About Me 🎀</h3>
+            <p>Welcome to my personal space! Main ekdum cute, sweet aur creative hoon. Mujhe life ko shanti se jeena, chhoti-chhoti khushiyon ko enjoy karna aur apne khaas logon ke sath achha waqt bitana bohot pasand hai! 💖</p>
         </div>
 
         <div class="about-box">
-            <h3>My Favorite Things 💖</h3>
+            <h3>My Favorites 🌟</h3>
             <ul class="fav-list">
-                <li>🍰 Sweet treats, Coffee & Aesthetics</li>
-                <li>🎵 Aesthetic Music & Binge-watching shows</li>
-                <li>✨ Making beautiful memories with Akash</li>
+                <li>🎨 Art, Creativity & Aesthetic Vibes</li>
+                <li>🎵 Sweet Romantic Music & Coffee Dates</li>
+                <li>💭 Making Beautiful Memories with Akash</li>
             </ul>
         </div>
 
