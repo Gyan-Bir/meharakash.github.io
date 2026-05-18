@@ -3,56 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mehar & Akash</title>
+    <title>Our Secret Space ❤️</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-        body { display: flex; height: 100vh; overflow: hidden; background-color: #111; }
-        .split { width: 50%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: all 0.5s ease; position: relative; cursor: pointer; text-decoration: none; }
-        .akash { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: #fff; }
-        .mehar { background: linear-gradient(135deg, #2c3e50, #fd746c); color: #fff; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #111; color: #fff; min-height: 100vh; overflow-x: hidden; }
+        #login-screen { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background: #111; }
+        .lock-box { text-align: center; background: rgba(255,255,255,0.05); padding: 40px 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); max-width: 400px; width: 90%; }
+        .lock-box h2 { font-size: 1.8rem; margin-bottom: 20px; color: #ff758c; }
+        .lock-box input { width: 100%; padding: 12px 20px; border-radius: 25px; border: 2px solid rgba(255,255,255,0.2); background: transparent; color: #fff; font-size: 1.2rem; text-align: center; margin-bottom: 20px; outline: none; transition: 0.3s; }
+        .lock-box input:focus { border-color: #ff758c; box-shadow: 0 0 10px rgba(255,117,140,0.3); }
+        .lock-box button { padding: 12px 30px; border: none; background: linear-gradient(45deg, #ff758c, #ff7eb3); color: #fff; border-radius: 25px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(255,117,140,0.4); }
+        .lock-box button:hover { transform: scale(1.05); }
+        #dashboard-screen { display: none; height: 100vh; }
+        .split { width: 50%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: all 0.5s ease; position: relative; cursor: pointer; }
+        .akash-side { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: #fff; }
+        .mehar-side { background: linear-gradient(135deg, #2c3e50, #fd746c); color: #fff; }
         .split:hover { width: 55%; }
         .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 1; }
-        .content { z-index: 2; text-align: center; padding: 20px; }
-        h1 { font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; }
-        p { font-size: 1.2rem; opacity: 0.8; font-style: italic; }
-        .btn { margin-top: 20px; padding: 10px 25px; border: 2px solid #fff; background: transparent; color: #fff; border-radius: 30px; font-weight: bold; text-transform: uppercase; }
-        @media(max-width: 768px) { body { flex-direction: column; } .split { width: 100%; height: 50%; } }
+        .split-content { z-index: 2; text-align: center; padding: 20px; }
+        .split-content h1 { font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; }
+        .split-content p { font-size: 1.2rem; opacity: 0.8; font-style: italic; }
+        .explore-btn { margin-top: 20px; padding: 10px 25px; border: 2px solid #fff; background: transparent; color: #fff; border-radius: 30px; font-weight: bold; text-transform: uppercase; }
+        @media(max-width: 768px) { #dashboard-screen { flex-direction: column; } .split { width: 100%; height: 50%; } .split:hover { height: 55%; width: 100%; } }
+        #akash-view, #mehar-view, #letter-view { display: none; padding: 20px; min-height: 100vh; justify-content: center; align-items: center; }
+        #akash-view { background: linear-gradient(to right, #2c5364, #203a43, #0f2027); }
+        #mehar-view { background: linear-gradient(to left, #fd746c, #2c3e50); }
+        #babe-view { display: none; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background: linear-gradient(135deg, #ff758c, #ff7eb3); text-align: center; padding: 20px; }
+        .love-text { font-size: 3.5rem; font-weight: bold; text-shadow: 3px 3px 15px rgba(0,0,0,0.3); animation: heartBeat 1.5s infinite; margin-bottom: 40px; }
+        @keyframes heartBeat { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        #letter-view { background: linear-gradient(135deg, #1a0508, #4a121a); }
+        .container { max-width: 550px; width: 100%; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; border: 1px solid rgba(255, 255, 255, 0.2); margin: auto; }
+        .profile-img { width: 130px; height: 130px; border-radius: 50%; margin-bottom: 15px; object-fit: cover; }
+        .akash-border { border: 3px solid #00f2fe; } .mehar-border { border: 3px solid #ff758c; }
+        .tagline { font-size: 1.1rem; margin-bottom: 25px; }
+        .color-akash { color: #00f2fe; } .color-mehar { color: #ff758c; }
+        .about-box { text-align: left; background: rgba(0, 0, 0, 0.4); padding: 20px; border-radius: 15px; margin-bottom: 20px; line-height: 1.6; }
+        .about-box h3 { margin-bottom: 10px; font-size: 1.3rem; }
+        .fav-list { list-style: none; } .fav-list li { margin-bottom: 10px; font-size: 1.05rem; }
+        .surprise-section { background: rgba(255, 117, 140, 0.1); border: 2px dashed #ff758c; padding: 25px; border-radius: 15px; margin-bottom: 20px; }
+        .main-text { font-size: 1.8rem; color: #ff758c; font-weight: bold; margin-bottom: 12px; }
+        .click-link { display: inline-block; font-size: 1.1rem; color: #00f2fe; text-decoration: underline; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .click-link:hover { color: #ff7eb3; transform: scale(1.05); }
+        .back-btn { display: inline-block; margin-top: 15px; padding: 12px 25px; color: #fff; text-decoration: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: 0.3s; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); }
+        .back-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
+        .letter-container { max-width: 600px; width: 100%; background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(15px); padding: 35px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.6); border: 1px solid rgba(255, 117, 140, 0.2); line-height: 1.8; margin: auto; }
+        .letter-container h2 { text-align: center; color: #ff758c; font-size: 2rem; margin-bottom: 25px; text-shadow: 0 0 10px rgba(255, 117, 140, 0.4); }
+        .letter-container p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; color: #f0e6e8; }
+        .highlight { color: #ff7eb3; font-weight: bold; }
+        .shayari-box { background: rgba(255, 117, 140, 0.15); border-left: 4px solid #ff758c; padding: 15px; margin: 25px 0; border-radius: 0 15px 15px 0; font-style: italic; text-align: left; }
     </style>
 </head>
 <body>
 
-    <div class="split akash" onclick="checkPassword('akash')">
-        <div class="overlay"></div>
-        <div class="content">
-            <h1>Akash</h1>
-            <p>Welcome to my space</p>
-            <div class="btn">Explore Me</div>
-        </div>
-    </div>
-
-    <div class="split mehar" onclick="checkPassword('mehar')">
-        <div class="overlay"></div>
-        <div class="content">
-            <h1>Mehar</h1>
-            <p>Welcome to my world</p>
-            <div class="btn">Explore Me</div>
-        </div>
-    </div>
+    <div id="app-root"></div>
 
     <script>
-        function checkPassword(section) {
-            var password = prompt("Enter Secret Password:");
-            if (password !== null) {
-                // Real password '201304' ko Base64 me check kar raha hai taaki inspect me na dikhe
-                if (btoa(password) === "MjAxMzA0") {
-                    if (section === 'akash') window.location.href = "akash.html";
-                    if (section === 'mehar') window.location.href = "mehar.html";
-                } else {
-                    alert("Wrong Password! ❌");
-                }
-            }
-        }
-    </script>
-
-</body>
-</html>
+        eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('O 11=["\\w\\n\\b\\m\\f\\d\\G\\h\\v\\e\\g\\D\\C","\\e\\b\\f\\h\\g\\v\\9\\F\\E\\f\\d\\h\\E\\c\\e","\\b\\9\\v\\b\\h\\G\\9\\9\\d\\F\\f","\\c\\e\\b\\d\\h\\9\\f\\m\\d\\f\\h\\g\\D\\C","\\b\\d\\9\\f\\g\\m\\9\\9\\d\\F\\f","\\9\\b\\e\\e\\F\\f\\g\\9\\d\\f\\h\\g","\\9\\b\\e\\e\\F\\f\\b\\f\\d\\h","\\b\\d\\9\\f\\g\\h\\9\\d\\f\\h\\g","\\9\\b\\e\\e\\F\\f\\b\\9\\9\\d\\F\\f","\\f\\e\\d\\f\\d\\9\\f\\e\\f\\h\\g\\v\\9","\\f\\v\\c\\d\\g\\b\\h\\f\\E\\b\\f\\g\\D\\C","\\c\\e\\b\\d\\h\\9\\f\\E\\b\\f\\g\\D\\C","\\v\\b\\G\\c\\9\\d\\f\\g\\E\\c\\e","\\v\\b\\G\\c\\9\\d\\f\\g\\E\\b\\d\\h","\\c\\e\\b\\d\\h\\9\\f\\g\\E\\g\\e\\c\\g\\c\\e\\b\\d\\h","\\b\\d\\d\\e\\f\\h\\g\\E\\b\\d\\d\\e\\f\\h\\g","\\f\\m\\d\\h\\d\\e\\d\\D\\b\\e\\g","\\b\\9\\v\\b\\h\\G\\E\\b\\e\\d\\d\\e\\f","\\e\\b\\F\\h\\g\\v\\9\\d\\f\\E\\c\\e\\m\\d\\e","\\b\\9\\v\\b\\h\\G","\\v\\9\\f\\c\\h\\g\\E\\9\\b\\e\\F","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f","\\f\\e\\e\\e\\b\\c\\f","\\c\\e\\b\\d\\h","\\f\\e\\d\\f\\d\\9\\f\\e\\f","\\f\\G\\9\\d\\e\\d\\f\\E\\b\\e\\d\\d\\e\\f","\\b\\9\\v\\b\\h","\\v\\e\\g\\E\\g\\9\\9\\b\\f\\E\\b\\f\\G","\\c\\e\\b\\d\\h\\E\\f\\e\\g\\e\\b","\\b\\d\\9\\f\\g\\E\\f\\m\\d\\h\\d\\e\\d","\\v\\e\\g\\E\\c\\9\\d\\f\\F","\\g\\9\\d\\9\\g\\e\\e","\\b\\e\\F\\h\\9\\f\\h\\g\\E\\e\\d\\g\\F","\\f\\v\\c\\9\\g\\e\\f\\E\\c\\b\\G\\f","\\b\\e\\d\\d\\e\\f\\E\\m\\d\\f\\h","\\c\\b\\G\\f\\E\\v\\e\\g","\\f\\E\\9\\e\\v\\E\\b\\e\\d\\d\\e\\f","\\9\\b\\F\\e\\v\\G","\\9\\b\\F\\e\\v\\G\\E\\c\\b\\G\\f","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\e\\f\\d\\h\\h\\f\\d\\f\\F","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\h\\f\\h\\h\\e\\d\\f\\G","\\G\\b\\F\\h\\f\\d\\E\\b\\d\\d\\e\\f","\\b\\d\\9\\f\\g\\E\\f\\e\\g\\e\\b","\\g\\9\\d\\g\\G\\e\\e\\E\\m\\e\\d\\f\\h\\h\\g\\b\\e\\g","\\G\\b\\F\\h\\f\\d\\E\\b\\d\\d\\e\\f\\E\\v\\e\\g","\\f\\E\\9\\9\\b\\d\\f\\D","\\b\\e\\F\\e\\f\\G","\\g\\9\\d\\g\\G\\e\\e\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\f\\E\\9\\e\\v\\E\\b\\e\\d\\d\\e\\f\\E\\m\\d\\f\\h\\h\\g\\b\\e\\g","\\f\\E\\9\\e\\v\\E\\b\\e\\d\\d\\e\\f\\E\\m\\d\\f\\h\\h\\g\\b\\e\\g\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\9\\b\\e\\f\\h\\v\\9\\f\\h\\E\\g\\e\\d\\f\\f","\\f\\E\\m\\d\\h\\d\\e\\d\\D\\b\\e\\g\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\e\\d\\h\\h\\g\\b\\e","\\e\\d\\h\\h\\g\\b\\e\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\G\\b\\F\\h\\f\\d\\E\\b\\d\\d\\e\\f\\E\\m\\d\\f\\h\\h\\g\\b\\e\\g","\\9\\b\\F\\e\\v\\G\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\G\\b\\F\\h\\f\\d\\E\\b\\d\\d\\e\\f\\E\\m\\d\\f\\h\\h\\g\\b\\e\\g\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\b\\e\\F\\e\\f\\G\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\v\\b\\h\\b\\h\\b\\d\\h\\h\\b\\G","\\v\\b\\h\\b\\h\\b\\d\\h\\h\\b\\G\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\9\\b\\e\\f\\h\\v\\9\\f\\h\\E\\g\\e\\d\\f\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\f\\E\\9\\9\\b\\d\\f\\D\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\f\\E\\m\\d\\h\\d\\e\\d\\D\\b\\e\\g\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\f\\E\\f\\e\\e\\e\\b\\c\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\f\\E\\c\\9\\d\\h\\b\\d\\h","\\f\\E\\c\\9\\d\\h\\b\\d\\h\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\b\\e\\F\\h\\9\\f\\h\\E\\e\\d\\g\\F\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\f\\E\\c\\e\\b\\d\\h\\E\\f\\e\\g\\e\\b","\\f\\E\\c\\e\\b\\d\\h\\E\\f\\e\\g\\e\\b\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\b\\d\\9\\f\\g\\E\\f\\e\\g\\e\\b\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\c\\e\\b\\d\\h\\E\\f\\e\\g\\e\\b\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D","\\c\\9\\d\\f\\F\\h\\e\\b\\d\\d\\e\\f\\E\\c\\b\\g\\f\\b\\G\\e\\d\\g\\E\\c\\b\\G\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c\\h\\b\\e\\d\\D\\b\\D\\b\\D\\b\\D\\E\\c\\b\\G\\e\\b\\c
+        
